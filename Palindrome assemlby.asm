@@ -1,7 +1,7 @@
 [org 0x100]
 
 mov ax,1234
-
+mov [num4],ax ;to store original number
 mov cx,4
 mov bx,0
 LOOP1:
@@ -19,11 +19,16 @@ mov ax,word [num2] ;moving original ax back
 sub cx,1
 jnz LOOP1
 
+cmp bx,[num4]
+je yes
+jmp end
 
-
-
+yes:
+setz bx  ;set bx to 1 if is palindrome
+end:
 mov ax,0x4c00
 int 0x21
 num: dw 10
 num2: dw 0
 num3: dw 0
+num4: dw 0
