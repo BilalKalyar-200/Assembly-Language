@@ -1,0 +1,23 @@
+[org 0x100]
+
+mov bx,0
+
+l1:
+mov ax,[num+bx]
+cmp ax,[num+bx+2]
+jbe no_swap
+
+mov dx,[num+bx+2]
+mov [num+bx+2],ax
+mov [num+bx],dx
+mov [swap],1
+no_swap:
+add bx,2
+cmp bx,18
+jne l1
+
+
+mov ax,0x4c00
+int 0x21
+num: dw 9,8,7,6,5,4,3,2,1,0
+swap: db 0

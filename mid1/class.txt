@@ -1,0 +1,26 @@
+[org 0x100]
+
+
+mov ax,[num]
+mov bx,0
+mov cx,0
+l1:
+
+
+add bx,2
+cmp bx,20
+jmp end
+
+cmp ax,[num+bx]
+ja l2
+
+l2:
+mov [num+bx],ax
+mov cx,ax
+jmp l1
+
+end:
+mov ax,0x4c00
+int 0x21
+
+num: dw 1,2,3,4,5,6,7,8,9,10
